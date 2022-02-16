@@ -20,12 +20,17 @@ export class ScheduleRepository {
 
   public findAll(): Promise<Schedule[]> {
     return this.knex.select(
+        'sch.code',
         'sch.date',
         'sch.hour',
         'st.description as status',
+        'st.code as statusCode',
         'sp.description as specialty',
+        'sp.code as specialtyCode',
         'd.fullname as doctor',
-        'p.fullname as patient'
+        'd.code as doctorCode',
+        'p.fullname as patient',
+        'p.code as patientCode'
     )
     .joinRaw('INNER JOIN status as st ON sch.status = st.code')
     .joinRaw('INNER JOIN specialty as sp ON sch.specialty = sp.code')
@@ -36,12 +41,17 @@ export class ScheduleRepository {
 
   public findOne(id: number): Promise<Schedule> {
     return this.knex.select(
-        'sch.date',
-        'sch.hour',
-        'st.description as status',
-        'sp.description as specialty',
-        'd.fullname as doctor',
-        'p.fullname as patient'
+      'sch.code',
+      'sch.date',
+      'sch.hour',
+      'st.description as status',
+      'st.code as statusCode',
+      'sp.description as specialty',
+      'sp.code as specialtyCode',
+      'd.fullname as doctor',
+      'd.code as doctorCode',
+      'p.fullname as patient',
+      'p.code as patientCode'
     )
     .joinRaw('INNER JOIN status as st ON sch.status = st.code')
     .joinRaw('INNER JOIN specialty as sp ON sch.specialty = sp.code')

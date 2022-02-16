@@ -1,8 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ScheduleService } from './schedule.service';
+import { ScheduleService } from './services/schedule.service';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { UpdateScheduleDto } from './dto/update-schedule.dto';
 import { Schedule } from './entities/schedule.entity';
+import { ScheduleResponse } from './integration/schedule.response';
 
 @Controller('schedule')
 export class ScheduleController {
@@ -14,12 +15,12 @@ export class ScheduleController {
   }
 
   @Get()
-  public findAll(): Promise<Schedule[]> {
+  public findAll(): Promise<ScheduleResponse[]> {
     return this.scheduleService.findAll();
   }
 
   @Get(':id')
-  public findOne(@Param('id') id: string): Promise<Schedule> {
+  public findOne(@Param('id') id: string): Promise<ScheduleResponse> {
     return this.scheduleService.findOne(+id);
   }
 
