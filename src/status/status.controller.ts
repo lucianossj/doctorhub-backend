@@ -2,8 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { Status } from './entities/status.entity';
 import { StatusService } from './services/status.service';
 
-@Controller('specialty')
-export class SpecialtyController {
+@Controller('status')
+export class StatusController {
   constructor(private readonly statusService: StatusService) {}
 
   @Get()
