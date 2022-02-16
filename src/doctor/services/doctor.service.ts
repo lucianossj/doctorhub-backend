@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CreateDoctorDto } from '../dto/create-doctor.dto';
 import { UpdateDoctorDto } from '../dto/update-doctor.dto';
 import { Doctor } from '../entities/doctor.entity';
+import { DoctorResponse } from '../integration/doctor.response';
+import { DoctorMapper } from '../mappers/doctor.mapper';
 import { DoctorRepository } from '../repository/doctor.repository';
 
 @Injectable()
@@ -15,8 +17,9 @@ export class DoctorService {
     return this.repository.create(createDoctorDto);
   }
 
-  public findAll(): Promise<Doctor[]> {
-    return this.repository.findAll();
+  public findAll(): Promise<DoctorResponse[]> {
+    return this.repository.findAll()
+      .then(entities => DoctorMapper.entityArrayToResponse(entities));
   }
 
   public findOne(id: number): Promise<Doctor> {

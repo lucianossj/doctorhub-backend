@@ -3,5 +3,6 @@ export class Doctor {
     public fullname: string;
     public username: string;
     public password: string;
-    public specialtyDescription: string;
+    public specialty: string;
+    public specialtyCode: number;
 }

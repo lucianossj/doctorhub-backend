@@ -24,7 +24,8 @@ export class DoctorRepository {
       'd.fullname',
       'd.username',
       'd.password',
-      's.description as specialty')
+      's.description as specialty',
+      's.code as specialtyCode')
     .from('doctor as d')
     .joinRaw('INNER JOIN specialty as s ON d.specialty = s.code');
   }

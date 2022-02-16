@@ -3,6 +3,7 @@ import { DoctorService } from './services/doctor.service';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
 import { UpdateDoctorDto } from './dto/update-doctor.dto';
 import { Doctor } from './entities/doctor.entity';
+import { DoctorResponse } from './integration/doctor.response';
 
 @Controller('doctor')
 export class DoctorController {
@@ -16,7 +17,7 @@ export class DoctorController {
   }
 
   @Get()
-  public findAll(): Promise<Doctor[]> {
+  public findAll(): Promise<DoctorResponse[]> {
     return this.doctorService.findAll();
   }
 
