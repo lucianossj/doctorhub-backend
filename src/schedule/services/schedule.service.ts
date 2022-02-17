@@ -34,4 +34,8 @@ export class ScheduleService {
   public remove(id: number): Promise<number> {
     return this.repository.remove(id);
   }
+
+  public cancelSchedule(id: number): Promise<number> {
+    return this.repository.cancelSchedule(id);
+  }
 }

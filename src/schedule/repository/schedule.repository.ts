@@ -73,4 +73,12 @@ export class ScheduleRepository {
       .from('schedule')
       .where('code', '=', id);
   }
+
+  public cancelSchedule(id: number): Promise<number> {
+    return this.knex.update({
+      status: 2
+    }).from('schedule')
+    .where('code', '=', id);
+
+  }
 }

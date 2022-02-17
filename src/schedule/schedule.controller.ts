@@ -29,6 +29,11 @@ export class ScheduleController {
     return this.scheduleService.update(+id, updateScheduleDto);
   }
 
+  @Patch('cancel/:id')
+  public cancelSchedule(@Param('id') id: string): Promise<number> {
+    return this.scheduleService.cancelSchedule(+id);
+  }
+
   @Delete(':id')
   public remove(@Param('id') id: string): Promise<number> {
     return this.scheduleService.remove(+id);
