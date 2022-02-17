@@ -10,4 +10,6 @@ export class Schedule {
     public doctorCode: number;
     public patient: string;
     public patientCode: number;
+    public patientBirth: string;
+    public patientGender: string;
 }

@@ -30,7 +30,9 @@ export class ScheduleRepository {
         'd.fullname as doctor',
         'd.code as doctorCode',
         'p.fullname as patient',
-        'p.code as patientCode'
+        'p.code as patientCode',
+        'p.birth as patientBirth',
+        'p.gender as patientGender',
     )
     .joinRaw('INNER JOIN status as st ON sch.status = st.code')
     .joinRaw('INNER JOIN specialty as sp ON sch.specialty = sp.code')
@@ -52,7 +54,9 @@ export class ScheduleRepository {
       'd.fullname as doctor',
       'd.code as doctorCode',
       'p.fullname as patient',
-      'p.code as patientCode'
+      'p.code as patientCode',
+      'p.birth as patientBirth',
+      'p.gender as patientGender',
     )
     .joinRaw('INNER JOIN status as st ON sch.status = st.code')
     .joinRaw('INNER JOIN specialty as sp ON sch.specialty = sp.code')

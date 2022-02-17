@@ -49,6 +49,8 @@ export class ScheduleMapper {
         return Builder<PatientScheduleResponse>()
             .code(entity.patientCode)
             .fullname(entity.patient)
+            .birth(entity.patientBirth)
+            .gender(entity.patientGender)
         .build();
     }
 
