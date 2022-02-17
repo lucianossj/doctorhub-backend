@@ -9,7 +9,7 @@ export class DoctorMapper {
         return entities.map(entity => this.entityToResponse(entity));
     }
 
-    private static entityToResponse(entity: Doctor): DoctorResponse {
+    public static entityToResponse(entity: Doctor): DoctorResponse {
         return Builder<DoctorResponse>()
             .code(entity.code)
             .fullname(entity.fullname)

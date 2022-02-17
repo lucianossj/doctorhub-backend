@@ -1,15 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Catch } from '@nestjs/common';
 import { DoctorService } from './services/doctor.service';
 import { CreateDoctorDto } from './dto/create-doctor.dto';
 import { UpdateDoctorDto } from './dto/update-doctor.dto';
 import { Doctor } from './entities/doctor.entity';
 import { DoctorResponse } from './integration/doctor.response';
+import { LoginDoctorDto } from './dto/login-doctor.dto';
 
 @Controller('doctor')
 export class DoctorController {
   constructor(
     private doctorService: DoctorService
   ) {}
+
+  @Post('/login')
+  public login(@Body() login: LoginDoctorDto): Promise<DoctorResponse> {
+    return this.doctorService.login(login);
+  }
 
   @Post()
   public create(@Body() createDoctorDto: CreateDoctorDto): Promise<void> {

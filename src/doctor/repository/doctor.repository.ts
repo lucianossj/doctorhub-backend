@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectKnex, Knex } from 'nestjs-knex';
 
 import { CreateDoctorDto } from '../dto/create-doctor.dto';
+import { LoginDoctorDto } from '../dto/login-doctor.dto';
 import { UpdateDoctorDto } from '../dto/update-doctor.dto';
 import { Doctor } from '../entities/doctor.entity';
 
@@ -12,6 +13,21 @@ export class DoctorRepository {
   constructor(
     @InjectKnex() private readonly knex: Knex
   ) {}
+
+  public login(login: LoginDoctorDto): Promise<Doctor> {
+    return this.knex.select(
+      'd.code',
+      'd.fullname',
+      'd.username',
+      'd.password',
+      's.description as specialty',
+      's.code as specialtyCode')
+    .from('doctor as d')
+    .joinRaw('INNER JOIN specialty as s ON d.specialty = s.code')
+    .where('d.username', '=', login.username)
+    .andWhere('d.password', '=', login.password)
+    .first();
+  }
 
   public create(createDoctorDto: CreateDoctorDto): Promise<void> {
     return this.knex.insert(createDoctorDto)
