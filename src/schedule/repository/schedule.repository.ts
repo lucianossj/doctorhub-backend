@@ -36,7 +36,8 @@ export class ScheduleRepository {
     .joinRaw('INNER JOIN specialty as sp ON sch.specialty = sp.code')
     .joinRaw('INNER JOIN doctor as d ON sch.doctor = d.code')
     .joinRaw('INNER JOIN patient as p ON sch.patient = p.code')
-    .from('schedule as sch');
+    .from('schedule as sch')
+    .orderBy('sch.code', 'desc');
   }
 
   public findOne(id: number): Promise<Schedule> {
