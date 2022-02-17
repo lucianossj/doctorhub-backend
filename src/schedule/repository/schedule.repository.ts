@@ -67,6 +67,30 @@ export class ScheduleRepository {
     .first();
   }
 
+  public findByDoctor(id: number): Promise<Schedule[]> {
+    return this.knex.select(
+      'sch.code',
+      'sch.date',
+      'sch.hour',
+      'st.description as status',
+      'st.code as statusCode',
+      'sp.description as specialty',
+      'sp.code as specialtyCode',
+      'd.fullname as doctor',
+      'd.code as doctorCode',
+      'p.fullname as patient',
+      'p.code as patientCode',
+      'p.birth as patientBirth',
+      'p.gender as patientGender',
+    )
+    .joinRaw('INNER JOIN status as st ON sch.status = st.code')
+    .joinRaw('INNER JOIN specialty as sp ON sch.specialty = sp.code')
+    .joinRaw('INNER JOIN doctor as d ON sch.doctor = d.code')
+    .joinRaw('INNER JOIN patient as p ON sch.patient = p.code')
+    .from('schedule as sch')
+    .where('d.code', '=', id);
+  }
+
   public update(id: number, updatePatientDto: UpdateScheduleDto): Promise<number> {
     return this.knex.update(updatePatientDto)
       .from('schedule')

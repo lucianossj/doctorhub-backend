@@ -24,6 +24,11 @@ export class ScheduleController {
     return this.scheduleService.findOne(+id);
   }
 
+  @Get('/doctor/:id')
+  public findByDoctor(@Param('id') id: string): Promise<ScheduleResponse[]> {
+    return this.scheduleService.findByDoctor(+id);
+  }
+
   @Patch(':id')
   public update(@Param('id') id: string, @Body() updateScheduleDto: UpdateScheduleDto): Promise<number> {
     return this.scheduleService.update(+id, updateScheduleDto);

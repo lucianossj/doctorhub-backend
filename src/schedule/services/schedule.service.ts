@@ -27,6 +27,11 @@ export class ScheduleService {
       .then(entity => ScheduleMapper.mapEntityToResponse(entity));
   }
 
+  public findByDoctor(id: number): Promise<ScheduleResponse[]> {
+    return this.repository.findByDoctor(id)
+      .then(entity => ScheduleMapper.mapEntitiesArrayToResponse(entity));
+  }
+
   public update(id: number, updatePatientDto: UpdateScheduleDto): Promise<number> {
     return this.repository.update(id, updatePatientDto);
   }
