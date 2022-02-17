@@ -38,4 +38,8 @@ export class ScheduleService {
   public cancelSchedule(id: number): Promise<number> {
     return this.repository.cancelSchedule(id);
   }
+
+  public finishSchedule(id: number): Promise<number> {
+    return this.repository.finishSchedule(id);
+  }
 }

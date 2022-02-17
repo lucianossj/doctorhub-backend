@@ -80,6 +80,13 @@ export class ScheduleRepository {
       status: 2
     }).from('schedule')
     .where('code', '=', id);
-
   }
+
+  public finishSchedule(id: number): Promise<number> {
+    return this.knex.update({
+      status: 1
+    }).from('schedule')
+    .where('code', '=', id);
+  }
+
 }

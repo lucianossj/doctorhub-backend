@@ -34,6 +34,11 @@ export class ScheduleController {
     return this.scheduleService.cancelSchedule(+id);
   }
 
+  @Patch('finish/:id')
+  public finishSchedule(@Param('id') id: string): Promise<number> {
+    return this.scheduleService.finishSchedule(+id);
+  }
+
   @Delete(':id')
   public remove(@Param('id') id: string): Promise<number> {
     return this.scheduleService.remove(+id);
