@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateScheduleDto } from '../dto/create-schedule.dto';
 import { UpdateScheduleDto } from '../dto/update-schedule.dto';
-import { Schedule } from '../entities/schedule.entity';
 import { ScheduleResponse } from '../integration/schedule.response';
 import { ScheduleMapper } from '../mappers/schedule.mapper';
 import { ScheduleRepository } from '../repository/schedule.repository';
